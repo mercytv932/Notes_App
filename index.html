@@ -23,7 +23,11 @@ const noteContent = document.querySelector("#noteContent");
 const addBtn = document.querySelector(".addBtn");
 const notesList = document.querySelector("#notesList");
 
-  let notes = [];
+
+
+ let notes = [];// global variable to store notes
+
+ 
 
 addBtn.addEventListener("click", function(){
   const title = noteInput.value;
@@ -53,7 +57,63 @@ addBtn.addEventListener("click", function(){
   notes.push(note);
   console.log(notes);
 
+  localStorage.setItem('notes', JSON.stringify(notes));// save to localstorage
+
 });
+
+
+
+function loadNotesFromLocalStorage(){
+  const storedNotesString = localStorage.getItem('notes');
+
+  if (storedNotesString){
+
+    try{
+      const parsedNotes = JSON.parse(storedNotesString);
+
+      notes = parsedNotes;
+
+      displayNotes();
+    } catch (error) {
+      console.error("Error parsing notes from localStorage:", error);
+
+      notes = [];
+
+    }
+
+
+  }
+
+
+}
+
+loadNotesFromLocalStorage();
+
+
+
+function displayNotes(){
+  notesList.innerHTML = "";
+
+  for( let i = 0; i < notes.length; i++) {
+    console.log(`Note at index ${i}: $notes{[i]}`);
+
+    const note = notes[i]; // Get the current note
+    const newDiv = document.createElement("div");
+
+    const newHTag = document.createElement("h3");
+    newHTag.textContent = note.title;
+
+    const newPTag = document.createElement("p");
+    newPTag.textContent = note.content;
+
+    newDiv.appendChild(newHTag);
+    newDiv.appendChild(newPTag);
+    notesList.appendChild(newDiv);
+
+
+  }
+
+}
 
   </script>
 </body>
