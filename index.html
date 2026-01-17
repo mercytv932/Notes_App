@@ -10,8 +10,8 @@
 </head>
 <body>
   
-<input type="text" placeholder="title" class="noteInput">
-<textarea id="noteContent"></textarea>
+<input type="text" placeholder="title..." class="noteInput"> <br>
+<textarea id="noteContent" placeholder="write here..."></textarea> <br>
 <button class="addBtn">Add Note</button>
 
 <div id="notesList"></div>
@@ -33,31 +33,42 @@ addBtn.addEventListener("click", function(){
   const title = noteInput.value;
   const content = noteContent.value;
 
+  if (!title || !content) return;
+
   //Note Object
   const note = {
     date: Date.now(),
     title: title,
     content: content
   }
-  console.log(note);
 
-  const newDiv = document.createElement("div");
-  const newHeadingTag = document.createElement("h3")
-  newHeadingTag.textContent = note.title;
-  const newParagraph = document.createElement("P")
-  newParagraph.textContent = note.content;
+notes.push(note);
+localStorage.setItem("notes", JSON.stringify(notes));
 
-  //place h3 and p inside the div
-  newDiv.appendChild(newHeadingTag);
-  newDiv.appendChild(newParagraph);
+displayNotes();
 
-  //add the whole div to notesList
-  notesList.appendChild(newDiv);
+noteInput.value = "";
+noteContent.value = "";
 
-  notes.push(note);
-  console.log(notes);
+  // console.log(note);
 
-  localStorage.setItem('notes', JSON.stringify(notes));// save to localstorage
+  // const newDiv = document.createElement("div");
+  // const newHeadingTag = document.createElement("h3")
+  // newHeadingTag.textContent = note.title;
+  // const newParagraph = document.createElement("P")
+  // newParagraph.textContent = note.content;
+
+  // //place h3 and p inside the div
+  // newDiv.appendChild(newHeadingTag);
+  // newDiv.appendChild(newParagraph);
+
+  // //add the whole div to notesList
+  // notesList.appendChild(newDiv);
+
+  // notes.push(note);
+  // console.log(notes);
+
+  // localStorage.setItem('notes', JSON.stringify(notes));// save to localstorage
 
 });
 
@@ -107,9 +118,11 @@ function displayNotes(){
     const newPTag = document.createElement("p");
     newPTag.textContent = note.content;
 
+
+    
     
    const deleteBtn = document.createElement("button");
-        deleteBtn.textContent = "🗑️";
+    deleteBtn.innerHTML = "🔴";
 
    deleteBtn.addEventListener("click", function(){
 
