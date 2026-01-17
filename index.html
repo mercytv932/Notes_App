@@ -90,6 +90,7 @@ function loadNotesFromLocalStorage(){
 loadNotesFromLocalStorage();
 
 
+//display notes on the page
 
 function displayNotes(){
   notesList.innerHTML = "";
@@ -106,14 +107,29 @@ function displayNotes(){
     const newPTag = document.createElement("p");
     newPTag.textContent = note.content;
 
+    
+   const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "🗑️";
+
+   deleteBtn.addEventListener("click", function(){
+
+    notes = notes.filter(n=> n.date !== note.date);
+    localStorage.setItem('notes', JSON.stringify(notes));
+    displayNotes();
+
+  
+});
+
+
     newDiv.appendChild(newHTag);
     newDiv.appendChild(newPTag);
+    newDiv.appendChild(deleteBtn);
     notesList.appendChild(newDiv);
-
-
   }
 
 }
+
+
 
   </script>
 </body>
