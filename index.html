@@ -132,9 +132,19 @@ function displayNotes(){
     
 
 
+    //edit the note code
+    const editBtn = document.createElement("button");
+    editBtn.textContent = "✏️";
 
+    editBtn.addEventListener("click", function(){
 
+        noteInput.value = note.title;
+        noteContent.value = note.content;
+        addBtn.textContent = "Update Note";
 
+        isEditing = true;
+        editingNoteDate = note.date;
+    });
 
     newDiv.appendChild(newHTag);
     newDiv.appendChild(newPTag);
@@ -148,3 +158,4 @@ function displayNotes(){
   </script>
 </body>
 </html>
+
