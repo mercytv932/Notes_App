@@ -27,7 +27,12 @@ const notesList = document.querySelector("#notesList");
 
  let notes = [];// global variable to store notes
 
+ let isEditing = false;
+
+ let editingNoteDate = null;
+
  
+
 
 addBtn.addEventListener("click", function(){
   const title = noteInput.value;
@@ -35,7 +40,19 @@ addBtn.addEventListener("click", function(){
 
   if (!title || !content) return;
 
-  //Note Object
+
+
+if(isEditing){
+  const  noteToUpdate = notes.find (n=> n.date === editingNoteDate);
+  noteToUpdate.title = title;
+  noteToUpdate.content = content;
+
+  isEditing = false;
+  editingNoteDate = null;
+  addBtn.textContent = "Add Note";
+}  else{
+
+
   const note = {
     date: Date.now(),
     title: title,
@@ -49,31 +66,15 @@ displayNotes();
 
 noteInput.value = "";
 noteContent.value = "";
-
-  // console.log(note);
-
-  // const newDiv = document.createElement("div");
-  // const newHeadingTag = document.createElement("h3")
-  // newHeadingTag.textContent = note.title;
-  // const newParagraph = document.createElement("P")
-  // newParagraph.textContent = note.content;
-
-  // //place h3 and p inside the div
-  // newDiv.appendChild(newHeadingTag);
-  // newDiv.appendChild(newParagraph);
-
-  // //add the whole div to notesList
-  // notesList.appendChild(newDiv);
-
-  // notes.push(note);
-  // console.log(notes);
-
-  // localStorage.setItem('notes', JSON.stringify(notes));// save to localstorage
+}
 
 });
 
 
 
+
+
+//load notes from storage code
 function loadNotesFromLocalStorage(){
   const storedNotesString = localStorage.getItem('notes');
 
@@ -91,18 +92,16 @@ function loadNotesFromLocalStorage(){
       notes = [];
 
     }
-
-
   }
-
-
 }
 
-loadNotesFromLocalStorage();
+loadNotesFromLocalStorage(); 
+
+
+
 
 
 //display notes on the page
-
 function displayNotes(){
   notesList.innerHTML = "";
 
@@ -120,29 +119,31 @@ function displayNotes(){
 
 
     
-    
+    //delete the note code
    const deleteBtn = document.createElement("button");
-    deleteBtn.innerHTML = "🔴";
+    deleteBtn.innerHTML = '<img src="image-copy.png">';
 
    deleteBtn.addEventListener("click", function(){
 
     notes = notes.filter(n=> n.date !== note.date);
     localStorage.setItem('notes', JSON.stringify(notes));
     displayNotes();
-
-  
 });
+    
+
+
+
+
 
 
     newDiv.appendChild(newHTag);
     newDiv.appendChild(newPTag);
     newDiv.appendChild(deleteBtn);
+    newDiv.appendChild(editBtn);
     notesList.appendChild(newDiv);
   }
 
 }
-
-
 
   </script>
 </body>
