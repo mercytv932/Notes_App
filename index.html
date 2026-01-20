@@ -60,13 +60,14 @@ if(isEditing){
   }
 
 notes.push(note);
-localStorage.setItem("notes", JSON.stringify(notes));
+}
 
+
+localStorage.setItem("notes", JSON.stringify(notes));
 displayNotes();
 
 noteInput.value = "";
 noteContent.value = "";
-}
 
 });
 
@@ -146,6 +147,9 @@ function displayNotes(){
         editingNoteDate = note.date;
     });
 
+
+
+
     newDiv.appendChild(newHTag);
     newDiv.appendChild(newPTag);
     newDiv.appendChild(deleteBtn);
@@ -158,4 +162,3 @@ function displayNotes(){
   </script>
 </body>
 </html>
-
