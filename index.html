@@ -13,7 +13,7 @@
 <input type="text" placeholder="title..." class="noteInput"> <br>
 <textarea id="noteContent" placeholder="write here..."></textarea> <br>
 <button class="addBtn">Add Note</button>
-
+<input type="search" placeholder="Find my notes..." id="search">
 <div id="notesList"></div>
 
 
@@ -22,6 +22,7 @@ const noteInput = document.querySelector(".noteInput");
 const noteContent = document.querySelector("#noteContent");
 const addBtn = document.querySelector(".addBtn");
 const notesList = document.querySelector("#notesList");
+const search = document.querySelector("#search");
 
 
 
@@ -72,6 +73,12 @@ noteContent.value = "";
 });
 
 
+search.addEventListener("input", function(){
+  function filterNotes(searchterm){
+    notesList.innerHTML = "";
+  }
+
+} )
 
 
 
@@ -122,8 +129,7 @@ function displayNotes(){
     
     //delete the note code
    const deleteBtn = document.createElement("button");
-    deleteBtn.innerHTML = '<img src="image-copy.png">';
-
+    deleteBtn.textContent = "X";
    deleteBtn.addEventListener("click", function(){
 
     notes = notes.filter(n=> n.date !== note.date);
