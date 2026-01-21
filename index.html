@@ -24,8 +24,6 @@ const addBtn = document.querySelector(".addBtn");
 const notesList = document.querySelector("#notesList");
 const search = document.querySelector("#search");
 
-
-
  let notes = [];// global variable to store notes
 
  let isEditing = false;
@@ -34,8 +32,6 @@ const search = document.querySelector("#search");
 
 
  
-
-
 addBtn.addEventListener("click", function(){
   const title = noteInput.value;
   const content = noteContent.value;
@@ -95,7 +91,6 @@ noteContent.value = "";
 
 
 
-
 //load notes from storage code
 function loadNotesFromLocalStorage(){
   const storedNotesString = localStorage.getItem('notes');
@@ -118,8 +113,6 @@ function loadNotesFromLocalStorage(){
 }
 
 loadNotesFromLocalStorage(); 
-
-
 
 
 
@@ -169,7 +162,6 @@ function displayNotes(){
 
 
 
-
     newDiv.appendChild(newHTag);
     newDiv.appendChild(newPTag);
     newDiv.appendChild(deleteBtn);
@@ -182,3 +174,4 @@ function displayNotes(){
   </script>
 </body>
 </html>
+
