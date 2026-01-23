@@ -16,8 +16,8 @@
 <input type="search" placeholder="Find my notes..." id="search">
 <div id="notesList"></div>
 <br><br>
-<button id="export">Export</button>
-<button id="import">Import</button>
+<button id="exportBtn">Export</button>
+<button id="importBtn">Import</button>
 
 
   <script>
@@ -26,6 +26,8 @@ const noteContent = document.querySelector("#noteContent");
 const addBtn = document.querySelector(".addBtn");
 const notesList = document.querySelector("#notesList");
 const search = document.querySelector("#search");
+const exportBtn = document.createElement("#exportBtn");
+const importBtn = document.createElement("#importBtn");
 
 
 
@@ -222,6 +224,20 @@ function displayNotes(){
   }
 
 }
+
+
+exportBtn.addEventListener("click", function(){
+  const jsonString = JSON.stringify(notes);
+  const blob = new Blob([jsonString], {type: "application/json"});
+  const url = URL.createObjectURL(blob)
+  const linkElement = document.createElement("a");
+  linkElement.href = url;
+  linkElement.download = "notes.json";
+  document.body.appendChild(linkElement);
+  linkElement.click();
+  document.body.removeChild(linkElement);
+});
+
 
   </script>
 </body>
