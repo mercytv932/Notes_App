@@ -18,6 +18,8 @@
 <br><br>
 <button id="exportBtn">Export</button>
 <button id="importBtn">Import</button>
+<input type="file" id="importFile" accept=".json" style="display: none;">
+
 
 
   <script>
@@ -26,8 +28,9 @@ const noteContent = document.querySelector("#noteContent");
 const addBtn = document.querySelector(".addBtn");
 const notesList = document.querySelector("#notesList");
 const search = document.querySelector("#search");
-const exportBtn = document.createElement("#exportBtn");
-const importBtn = document.createElement("#importBtn");
+const exportBtn = document.querySelector("#exportBtn");
+const importBtn = document.querySelector("#importBtn");
+const importFile = document.querySelector("importFile");
 
 
 
@@ -236,6 +239,40 @@ exportBtn.addEventListener("click", function(){
   document.body.appendChild(linkElement);
   linkElement.click();
   document.body.removeChild(linkElement);
+});
+
+importBtn.addEventListener("click", function(){
+  importFile.click();
+
+});
+
+importFile.addEventListener("change", function(){
+  const file = importFile.files[0];
+  if(!file) return;
+
+  const reader = new FileReader();
+
+  reader.onload = function (event){
+    try{
+
+      const importedNotes = JSON.parse(event.target.result);
+
+      if(!Array.isArray(importedNotes)){
+        alert("Invalid notes file");
+        return;
+      }
+
+      notes = importedNotes;
+      localStorage.setItem("notes", JSON.stringify(notes));
+
+      displayNotes();
+      alert("Notes imported successfully");
+
+    } catch (err) {
+      alert("Error importing file");
+    }
+  };
+  reader.readAsText(file);
 });
 
 
