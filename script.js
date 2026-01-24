@@ -106,13 +106,11 @@ search.addEventListener("input", function(){
         newDiv.appendChild(editBtn);
         notesList.appendChild(newDiv);
 
-
       }
 
     });
 
   }
-
 
 
 
@@ -138,7 +136,6 @@ function loadNotesFromLocalStorage(){
 }
 
 loadNotesFromLocalStorage(); 
-
 
 
 
@@ -247,3 +244,4 @@ importFile.addEventListener("change", function(){
   };
   reader.readAsText(file);
 });
+
