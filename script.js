@@ -9,15 +9,11 @@ const importBtn = document.querySelector("#importBtn");
 const importFile = document.querySelector("importFile");
 
 
-
  let notes = [];// global variable to store notes
 
  let isEditing = false;
 
  let editingNoteDate = null;
-
-
- 
 
 
 addBtn.addEventListener("click", function(){
@@ -204,7 +200,7 @@ function displayNotes(){
 
 }
 
-
+//export file code
 exportBtn.addEventListener("click", function(){
   const jsonString = JSON.stringify(notes);
   const blob = new Blob([jsonString], {type: "application/json"});
@@ -217,6 +213,7 @@ exportBtn.addEventListener("click", function(){
   document.body.removeChild(linkElement);
 });
 
+//import file code
 importBtn.addEventListener("click", function(){
   importFile.click();
 
