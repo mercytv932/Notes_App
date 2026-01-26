@@ -106,11 +106,13 @@ search.addEventListener("input", function(){
         newDiv.appendChild(editBtn);
         notesList.appendChild(newDiv);
 
+
       }
 
     });
 
   }
+
 
 
 
@@ -140,6 +142,7 @@ loadNotesFromLocalStorage();
 
 
 
+
 //display notes on the page
 function displayNotes(){
   notesList.innerHTML = "";
@@ -161,6 +164,7 @@ function displayNotes(){
     //delete the note code
    const deleteBtn = document.createElement("button");
     deleteBtn.innerHTML = "X";
+    deleteBtn.style.cursor = "pointer";
     // deleteBtn.innerHTML=  "<img src='image-copy.png'>";
      deleteBtn.addEventListener("click", function(){
 
@@ -174,6 +178,7 @@ function displayNotes(){
     //edit the note code
     const editBtn = document.createElement("button");
     editBtn.textContent = "✏️";
+    editBtn.style.cursor = "pointer";
 
     editBtn.addEventListener("click", function(){
 
@@ -244,4 +249,3 @@ importFile.addEventListener("change", function(){
   };
   reader.readAsText(file);
 });
-
