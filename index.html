@@ -5,22 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
   <title>Notes App</title>
-  <style>
 
-  </style>
 </head>
 <body>
   
+<div style="background-color: rgb(218, 194, 162); display: inline-block; padding: 10px;">
+
 <input type="text" placeholder="title..." class="noteInput"> <br>
 <textarea id="noteContent" placeholder="write here..."></textarea> <br>
 <button class="addBtn">Add Note</button>
 <input type="search" placeholder="Find my notes..." id="search">
-<div id="notesList"></div>
+
+</div>
+
+<br> <br>
+
+<div style="background-color: rgb(228, 193, 147); display: inline-block; padding: 5px;">
+
+  <div id="notesList"></div>
 <br><br>
 <button id="exportBtn">Export</button>
 <button id="importBtn">Import</button>
 <input type="file" id="importFile" accept=".json" style="display: none;">
 
+</div>
 
 
   <script src="script.js"></script>
