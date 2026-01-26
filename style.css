@@ -1,4 +1,3 @@
-
     .noteInput{
       margin: 5px;
       border-radius: 5px;
@@ -45,4 +44,31 @@
 
     #search:hover{
       border-color: blueviolet;
+    }
+
+
+
+    #exportBtn{
+      margin: 5px;
+      background: #B5B4D9;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #exportBtn:hover{
+      background-color:#9e9cea;
+    }
+
+
+
+    #importBtn{
+      margin: 5px;
+      background-color: #9CD3D9;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    #importBtn:hover{
+      background-color: #79e1ec;
     }
