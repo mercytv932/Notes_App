@@ -6,7 +6,7 @@ const notesList = document.querySelector("#notesList");
 const search = document.querySelector("#search");
 const exportBtn = document.querySelector("#exportBtn");
 const importBtn = document.querySelector("#importBtn");
-const importFile = document.querySelector("importFile");
+const importFile = document.querySelector("#importFile");
 
 
  let notes = [];// global variable to store notes
@@ -50,8 +50,9 @@ displayNotes();
 
 noteInput.value = "";
 noteContent.value = "";
-
 });
+
+
 
 search.addEventListener("input", function(){
   const searchTerm = search.value.toLowerCase();
@@ -72,13 +73,16 @@ search.addEventListener("input", function(){
       if(note.title.toLowerCase().includes(searchTerm) ||
        note.content.toLowerCase().includes(searchTerm)) {
          const newDiv = document.createElement("div");
+         newDiv.classList.add("note");
+
         const newHTag = document.createElement("h3");
         newHTag.textContent = note.title;
+
         const newPTag = document.createElement("p");
         newPTag.textContent = note.content;
 
         const deleteBtn = document.createElement("button");
-         deleteBtn.innerHTML=  "<img src='image-copy.png'>";
+         deleteBtn.innerHTML=  "X";
          deleteBtn.addEventListener("click", function(){
 
          notes = notes.filter(n=> n.date !== note.date);
@@ -148,10 +152,11 @@ function displayNotes(){
   notesList.innerHTML = "";
 
   for( let i = 0; i < notes.length; i++) {
-    console.log(`Note at index ${i}: $notes{[i]}`);
+    console.log(`Note at index ${i}:`, notes[i]);
 
     const note = notes[i]; // Get the current note
     const newDiv = document.createElement("div");
+    newDiv.classList.add("note")
 
     const newHTag = document.createElement("h3");
     newHTag.textContent = note.title;
