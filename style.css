@@ -51,7 +51,12 @@
       border-radius: 8px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       border-left: 4px solid #B56060;
-      transition: transform 0.2s;
+      transition: all 0.2s ease;
+    }
+
+    #notesList > div:hover{
+      transform: scale(1.02);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
 
     #notesList h3{
@@ -73,14 +78,26 @@
       font-size: 14px;
     }
 
-    .note{
-      transition: all 0.2s ease;
-      cursor: pointer;
+    #notesList button:first-of-type{
+      background-color: #ffcdd2;
+      color: #c62828;
     }
 
-    .note:hover{
-      transform: scale(1.05);
+    #notesList button:first-of-type:hover{
+      background-color: #B56060;
+      color: white;
     }
+
+    #notesList button:last-of-type{
+      background-color: #e8e7f5;
+      color: #5e35b1;
+    }
+
+    #notesList button:last-of-type:hover{
+      background-color: #9e9cea;
+      color: white;
+    }
+
 
     .addBtn{
       font-size: 14px;
