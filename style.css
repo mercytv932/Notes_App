@@ -1,10 +1,27 @@
+    
+    body{
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+    }
+
+
     .noteInput{
       margin: 5px;
       border-radius: 5px;
-      border: 0.5 solid gray;
+      border: 0.5px solid gray;
+      padding: 10px;
+      transition: all 0.3s ease;
     }
     .noteInput:hover{
       border-color: tomato;
+    }
+
+    #noteInput:focus{
+      outline: none;
+      border-color: tomato;
+      box-shadow:  0 0 5px rgba(255, 99, 71, 0.3);
     }
 
 
@@ -13,13 +30,57 @@
       border-radius: 5px;
       margin: 5px;
       border: 0.5px solid gray;
+      padding: 10px;
+      transition: all 0.3s ease;
     }
 
     #noteContent:hover{
       border-color:  #B56060;
     }
 
+    #noteContent:focus{
+      outline: none;
+      border-color: tomato;
+      box-shadow:  0 0 5px rgba(255, 99, 71, 0.3);
+    }
 
+    #notesList > div {
+      background-color: white;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      border-left: 4px solid #B56060;
+      transition: transform 0.2s;
+    }
+
+    #notesList h3{
+      margin-top: 0;
+      color: #333;
+    }
+
+    #notesList p{
+      color: #666;
+      line-height: 1.6;
+    }
+
+    #notesList button{
+      padding: 5px 10px;
+      margin-right: 5px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .note{
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .note:hover{
+      transform: scale(1.05);
+    }
 
     .addBtn{
       font-size: 14px;
@@ -27,10 +88,12 @@
       background-color: rgb(245, 193, 98);
       cursor: pointer;
       margin: 5px;
+      padding: 8px 16px;
+      transition: all 0.3s ease;
     }
     .addBtn:hover{
       background-color: orange;
-      transition: 0.9;
+      transition: all 0.3s ease;
       margin: 5px;
     }
 
@@ -40,10 +103,17 @@
       border-radius: 5px;
       margin: 5px;
       border: 0.5px solid;
+      transition: all 0.3s ease;
     }
 
     #search:hover{
       border-color: blueviolet;
+    }
+
+    #search:focus{
+      outline: none;
+      border-color: tomato;
+      box-shadow: 0 0 5px rgba(255, 99, 71, 00.3);
     }
 
 
@@ -53,6 +123,8 @@
       background: #B5B4D9;
       border-radius: 5px;
       cursor: pointer;
+      padding: 8px 16px;
+      transition: all 0.3s ease;
     }
 
     #exportBtn:hover{
@@ -67,8 +139,19 @@
       border-radius: 5px;
       font-size: 14px;
       cursor: pointer;
+      padding: 8px 16px;
+      transition: all 0.3s ease;
     }
 
     #importBtn:hover{
       background-color: #79e1ec;
     }
+
+    hr{
+      border: none;
+      height: 2px;
+      background-color: #B56060;
+      margin: 15px 0;
+      border-radius: 1px;
+    }
+  
