@@ -6,13 +6,16 @@
       font-family: Arial, sans-serif;
     }
 
+    
 
     .noteInput{
-      margin: 5px;
+      display: block;
+      margin: 10px;
       border-radius: 5px;
       border: 0.5px solid gray;
       padding: 10px;
       transition: all 0.3s ease;
+
     }
     .noteInput:hover{
       border-color: tomato;
@@ -27,8 +30,9 @@
 
 
     #noteContent{
+      display: block;
       border-radius: 5px;
-      margin: 5px;
+      margin: 10px;
       border: 0.5px solid gray;
       padding: 10px;
       transition: all 0.3s ease;
@@ -100,27 +104,29 @@
 
 
     .addBtn{
+      display: block;
       font-size: 14px;
       border-radius: 5px;
       background-color: rgb(245, 193, 98);
       cursor: pointer;
-      margin: 5px;
+      margin: 10px;
       padding: 8px 16px;
       transition: all 0.3s ease;
     }
     .addBtn:hover{
       background-color: orange;
-      transition: all 0.3s ease;
       margin: 5px;
     }
 
 
 
     #search{
+      display: block;
       border-radius: 5px;
-      margin: 5px;
+      margin: 10px;
       border: 0.5px solid;
       transition: all 0.3s ease;
+      padding: 10px;
     }
 
     #search:hover{
@@ -170,5 +176,28 @@
       background-color: #B56060;
       margin: 15px 0;
       border-radius: 1px;
+    }
+    
+    .container{
+      position: relative;
+      max-width: 600px;
+      margin: 0 auto 30px;
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow:  0 2px 10px rgba(0,0,0,0.1);
+      position: relative;
+    }
+
+    h1{
+      text-align: center;
+      color: #B56060;
+      margin-bottom: 25px;
+      font-size: 32px;
+    }
+
+    .export-import-section{
+      text-align: center;
+      margin: 20px;
     }
   
