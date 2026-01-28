@@ -73,7 +73,6 @@ search.addEventListener("input", function(){
       if(note.title.toLowerCase().includes(searchTerm) ||
        note.content.toLowerCase().includes(searchTerm)) {
          const newDiv = document.createElement("div");
-         newDiv.classList.add("note");
 
         const newHTag = document.createElement("h3");
         newHTag.textContent = note.title;
@@ -156,7 +155,6 @@ function displayNotes(){
 
     const note = notes[i]; // Get the current note
     const newDiv = document.createElement("div");
-    newDiv.classList.add("note")
 
     const newHTag = document.createElement("h3");
     newHTag.textContent = note.title;
@@ -219,6 +217,7 @@ exportBtn.addEventListener("click", function(){
   linkElement.click();
   document.body.removeChild(linkElement);
 });
+
 
 //import file code
 importBtn.addEventListener("click", function(){
