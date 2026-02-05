@@ -23,7 +23,6 @@ addBtn.addEventListener("click", function(){
   if (!title || !content) return;
 
 
-
 if(isEditing){
   const  noteToUpdate = notes.find (n=> n.date === editingNoteDate);
   noteToUpdate.title = title;
@@ -51,7 +50,6 @@ displayNotes();
 noteInput.value = "";
 noteContent.value = "";
 });
-
 
 
 search.addEventListener("input", function(){
@@ -115,7 +113,6 @@ search.addEventListener("input", function(){
     });
 
   }
-
 
 
 
@@ -194,8 +191,6 @@ function displayNotes(){
     });
 
 
-
-
     newDiv.appendChild(newHTag);
     newDiv.appendChild(newPTag);
     newDiv.appendChild(deleteBtn);
@@ -204,6 +199,7 @@ function displayNotes(){
   }
 
 }
+
 
 //export file code
 exportBtn.addEventListener("click", function(){
