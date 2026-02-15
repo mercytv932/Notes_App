@@ -5,18 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
   <title>Notes App</title>
-
 </head>
 <body>
 
+  <header class="header">
+    <div>Notes</div>
+    <nav id="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="contact">Contact</a>
+    </nav>
+  </header>
+
 <div class="container">
   <h1>My notes</h1>
+  <!-- <hr> -->
 
- <input type="text" placeholder="title..." class="noteInput"> <!--<br>-->
- <textarea id="noteContent" placeholder="write here..."></textarea> <!--<br>-->
+ <input type="text" placeholder="title..." class="noteInput"> 
+ <textarea id="noteContent" placeholder="write here..."></textarea>
  <button class="addBtn">Add Note</button>
  <input type="search" placeholder="Find my notes..." id="search">
 
+<!-- <br><br> -->
 <hr>
   <div id="notesList"></div>
 <br><br>
@@ -30,6 +40,8 @@
 
 </div>
 
-  <script src="script.js"></script>
+  
+<script src="script.js"></script>
+
 </body>
 </html>
