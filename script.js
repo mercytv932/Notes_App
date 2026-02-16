@@ -102,9 +102,9 @@ search.addEventListener("input", function(){
           if(confirmDelete){
          notes = notes.filter(n=> n.date !== note.date);
          localStorage.setItem('notes', JSON.stringify(notes));
-         displayNotes();
-          }
-          });
+         displayNotes();  
+           }
+       });
 
         const editBtn = document.createElement("button");
          editBtn.textContent = "✏️";
@@ -274,4 +274,5 @@ importFile.addEventListener("change", function(){
   };
   reader.readAsText(file);
 });
+
 
