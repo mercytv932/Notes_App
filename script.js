@@ -5,7 +5,7 @@ const notesList = document.querySelector("#notesList");
 const search = document.querySelector("#search");
 const exportBtn = document.querySelector("#exportBtn");
 const importBtn = document.querySelector("#importBtn");
-const importFile = document.querySelector("importFile");
+const importFile = document.querySelector("#importFile");
 
 
  let notes = [];// global variable to store notes
@@ -274,3 +274,4 @@ importFile.addEventListener("change", function(){
   };
   reader.readAsText(file);
 });
+
