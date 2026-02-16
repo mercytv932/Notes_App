@@ -1,4 +1,3 @@
-
 const noteInput = document.querySelector(".noteInput");
 const noteContent = document.querySelector("#noteContent");
 const addBtn = document.querySelector(".addBtn");
@@ -6,7 +5,7 @@ const notesList = document.querySelector("#notesList");
 const search = document.querySelector("#search");
 const exportBtn = document.querySelector("#exportBtn");
 const importBtn = document.querySelector("#importBtn");
-const importFile = document.querySelector("#importFile");
+const importFile = document.querySelector("importFile");
 
 
  let notes = [];// global variable to store notes
@@ -21,6 +20,7 @@ addBtn.addEventListener("click", function(){
   const content = noteContent.value;
 
   if (!title || !content) return;
+
 
 
 if(isEditing){
@@ -49,6 +49,23 @@ displayNotes();
 
 noteInput.value = "";
 noteContent.value = "";
+
+});
+
+//click "Enter" to add note code
+noteInput.addEventListener("keydown", function(event){
+  if(event.key === "Enter"){
+    event.preventDefault();
+    addBtn.click();
+  }
+});
+
+// add note when click enter
+noteContent.addEventListener("keydown", function(event){
+  if(event.key === "Enter" && !event.shiftKey){
+    event.preventDefault();
+    addBtn.click();
+  }
 });
 
 
@@ -71,20 +88,22 @@ search.addEventListener("input", function(){
       if(note.title.toLowerCase().includes(searchTerm) ||
        note.content.toLowerCase().includes(searchTerm)) {
          const newDiv = document.createElement("div");
-
         const newHTag = document.createElement("h3");
         newHTag.textContent = note.title;
-
         const newPTag = document.createElement("p");
         newPTag.textContent = note.content;
 
         const deleteBtn = document.createElement("button");
          deleteBtn.innerHTML=  "X";
-         deleteBtn.addEventListener("click", function(){
 
+         deleteBtn.addEventListener("click", function(){
+          const confirmDelete = confirm("Are you sure?");
+
+          if(confirmDelete){
          notes = notes.filter(n=> n.date !== note.date);
-        localStorage.setItem('notes', JSON.stringify(notes));
-            displayNotes();
+         localStorage.setItem('notes', JSON.stringify(notes));
+         displayNotes();
+          }
           });
 
         const editBtn = document.createElement("button");
@@ -113,6 +132,7 @@ search.addEventListener("input", function(){
     });
 
   }
+
 
 
 
@@ -148,7 +168,7 @@ function displayNotes(){
   notesList.innerHTML = "";
 
   for( let i = 0; i < notes.length; i++) {
-    console.log(`Note at index ${i}:`, notes[i]);
+    console.log(`Note at index ${i}: $notes{[i]}`);
 
     const note = notes[i]; // Get the current note
     const newDiv = document.createElement("div");
@@ -166,13 +186,16 @@ function displayNotes(){
     deleteBtn.innerHTML = "X";
     deleteBtn.style.cursor = "pointer";
     // deleteBtn.innerHTML=  "<img src='image-copy.png'>";
-     deleteBtn.addEventListener("click", function(){
 
-    notes = notes.filter(n=> n.date !== note.date);
-    localStorage.setItem('notes', JSON.stringify(notes));
-    displayNotes();
+     deleteBtn.addEventListener("click", function(){
+     const confirmDelete = confirm("Are you sure?");
+
+     if (confirmDelete){
+      notes = notes.filter(n=> n.date !== note.date);
+      localStorage.setItem('notes', JSON.stringify(notes));
+      displayNotes();
+     }
 });
-    
 
 
     //edit the note code
@@ -189,6 +212,8 @@ function displayNotes(){
         isEditing = true;
         editingNoteDate = note.date;
     });
+
+
 
 
     newDiv.appendChild(newHTag);
