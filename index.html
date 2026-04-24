@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Notes App</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap');
+
+:root {
+  --bg: #0a0a0a;
+  --surface: #111111;
+  --surface2: #1a1a1a;
+  --gold: #c9a84c;
+  --gold-dim: rgba(201, 168, 76, 0.15);
+  --text: #e8e0d0;
+  --text-dim: #888;
+  --border: rgba(201, 168, 76, 0.2);
+  --red: #c0392b;
+  --red-dim: rgba(192, 57, 43, 0.15);
+  --purple: #7c5cbf;
+  --purple-dim: rgba(124, 92, 191, 0.15);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  min-height: 100vh;
+}
+
+/* HEADER */
+.header {
+  position: sticky;
+  top: 0;
+  background-color: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+}
+
+.header .logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  color: var(--gold);
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-decoration: none;
+}
+
+#nav-links a {
+  margin-left: 30px;
+  text-decoration: none;
+  color: var(--text-dim);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+#nav-links a:hover {
+  color: var(--gold);
+  border-bottom: none;
+}
+
+/* MAIN CONTAINER */
+.container {
+  max-width: 780px;
+  margin: 50px auto;
+  padding: 0 20px 60px;
+  background: none;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 48px;
+  font-weight: 300;
+  color: var(--text);
+  text-align: left;
+  margin-bottom: 8px;
+  letter-spacing: -1px;
+}
+
+h1 span {
+  color: var(--gold);
+}
+
+.subtitle {
+  color: var(--text-dim);
+  font-size: 14px;
+  letter-spacing: 1px;
+  margin-bottom: 40px;
+}
+
+/* INPUT AREA */
+.input-section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px;
+  margin-bottom: 32px;
+}
+
+.noteInput, #noteInput {
+  display: block;
+  width: 100%;
+  background: var(--surface2);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 8px;
+  padding: 14px 16px;
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  margin-bottom: 12px;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.noteInput::placeholder, #noteInput::placeholder {
+  color: var(--text-dim);
+}
+
+.noteInput:focus, #noteInput:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px var(--gold-dim);
+}
+
+#noteContent {
+  display: block;
+  width: 100%;
+  background: var(--surface2);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 8px;
+  padding: 14px 16px;
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  margin-bottom: 16px;
+  min-height: 100px;
+  resize: vertical;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+#noteContent::placeholder {
+  color: var(--text-dim);
+}
+
+#noteContent:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px var(--gold-dim);
+}
+
+.addBtn {
+  background: var(--gold);
+  color: #0a0a0a;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 28px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+  margin: 0;
+}
+
+.addBtn:hover {
+  background: #e0b95a;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(201, 168, 76, 0.3);
+  margin: 0;
+}
+
+/* SEARCH */
+#search {
+  display: block;
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 16px;
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  margin-bottom: 28px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+#search::placeholder {
+  color: var(--text-dim);
+}
+
+#search:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px var(--gold-dim);
+}
+
+/* DIVIDER */
+hr {
+  border: none;
+  height: 1px;
+  background: var(--border);
+  margin: 28px 0;
+}
+
+/* NOTES LIST */
+#notesList > div {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin-bottom: 16px;
+  transition: all 0.3s ease;
+}
+
+#notesList > div:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+  border-color: var(--gold);
+}
+
+#notesList h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+#notesList p {
+  color: var(--text-dim);
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+#notesList button {
+  padding: 7px 16px;
+  margin-right: 8px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  transition: all 0.2s ease;
+}
+
+#notesList button:first-of-type {
+  background: var(--red-dim);
+  color: #e74c3c;
+  border: 1px solid rgba(192,57,43,0.3);
+}
+
+#notesList button:first-of-type:hover {
+  background: var(--red);
+  color: white;
+}
+
+#notesList button:last-of-type {
+  background: var(--purple-dim);
+  color: #9b7de0;
+  border: 1px solid rgba(124,92,191,0.3);
+}
+
+#notesList button:last-of-type:hover {
+  background: var(--purple);
+  color: white;
+}
+
+/* EXPORT/IMPORT */
+.export-import-section {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 32px;
+}
+
+#exportBtn {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-dim);
+  padding: 10px 24px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#exportBtn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: var(--gold-dim);
+}
+
+#importBtn {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-dim);
+  padding: 10px 24px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#importBtn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: var(--gold-dim);
+}
+
+/* FOOTER */
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 24px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-dim);
+  font-size: 13px;
+}
+
+.footer a {
+  color: var(--text-dim);
+  text-decoration: none;
+  margin-left: 24px;
+  transition: color 0.3s ease;
+}
+
+.footer a:hover {
+  color: var(--gold);
+}
+</style>
+</head>
+<body>
+
+  <header class="header">
+    <div> 📝 My Notes</div>
+    <nav id="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="contact">Contact</a>
+    </nav>
+  </header>
+
+<div class="container">
+  <h1> My notes</h1>
+  <!-- <hr> -->
+
+ <input type="text" placeholder="title..." class="noteInput"> 
+ <textarea id="noteContent" placeholder="write here..."></textarea>
+ <button class="addBtn">Add Note</button>
+ <input type="search" placeholder="Find my notes..." id="search">
+
+<!-- <br><br> -->
+<hr>
+  <div id="notesList"></div>
+<br><br>
+
+ <div class="export-import-section">
+  <button id="exportBtn">Download</button>
+  <button id="importBtn">Upload</button>
+  <input type="file" id="importFile" accept=".json" style="display: none;">
+
+ </div>
+
+</div>
+
+<footer class="footer">
+  <p>&copy; 2026 My Notes. All rights reserved.</p>
+  <nav>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="/privacy-policy">Privacy Policy</a>
+  </nav>
+</footer>
+
+<script>
+  
+const noteInput = document.querySelector(".noteInput");
+const noteContent = document.querySelector("#noteContent");
+const addBtn = document.querySelector(".addBtn");
+const notesList = document.querySelector("#notesList");
+const search = document.querySelector("#search");
+const exportBtn = document.querySelector("#exportBtn");
+const importBtn = document.querySelector("#importBtn");
+const importFile = document.querySelector("#importFile");
+
+
+ let notes = [];// global variable to store notes
+
+ let isEditing = false;
+
+ let editingNoteDate = null;
+
+
+addBtn.addEventListener("click", function(){
+  const title = noteInput.value;
+  const content = noteContent.value;
+
+  if (!title || !content) return;
+
+
+
+if(isEditing){
+  const  noteToUpdate = notes.find (n=> n.date === editingNoteDate);
+  noteToUpdate.title = title;
+  noteToUpdate.content = content;
+
+  isEditing = false;
+  editingNoteDate = null;
+  addBtn.textContent = "Add Note";
+}  else{
+
+
+  const note = {
+    date: Date.now(),
+    title: title,
+    content: content
+  }
+
+notes.push(note);
+}
+
+
+localStorage.setItem("notes", JSON.stringify(notes));
+displayNotes();
+
+noteInput.value = "";
+noteContent.value = "";
+
+});
+
+//click "Enter" to add note code
+noteInput.addEventListener("keydown", function(event){
+  if(event.key === "Enter"){
+    event.preventDefault();
+    addBtn.click();
+  }
+});
+
+// add note when click enter
+noteContent.addEventListener("keydown", function(event){
+  if(event.key === "Enter" && !event.shiftKey){
+    event.preventDefault();
+    addBtn.click();
+  }
+});
+
+
+search.addEventListener("input", function(){
+  const searchTerm = search.value.toLowerCase();
+  if(searchTerm ===""){
+    displayNotes();
+  } else{
+    filterNotes(searchTerm);
+  }
+});
+
+
+//Search up notes code
+  function filterNotes(searchTerm){
+    notesList.innerHTML = "";
+
+    notes.forEach( (note, i) => {
+
+      if(note.title.toLowerCase().includes(searchTerm) ||
+       note.content.toLowerCase().includes(searchTerm)) {
+         const newDiv = document.createElement("div");
+        const newHTag = document.createElement("h3");
+        newHTag.textContent = note.title;
+        const newPTag = document.createElement("p");
+        newPTag.textContent = note.content;
+
+        const deleteBtn = document.createElement("button");
+         deleteBtn.innerHTML=  "X";
+
+         deleteBtn.addEventListener("click", function(){
+          const confirmDelete = confirm("Are you sure?");
+
+          if(confirmDelete){
+         notes = notes.filter(n=> n.date !== note.date);
+         localStorage.setItem('notes', JSON.stringify(notes));
+         displayNotes();
+          }
+          });
+
+        const editBtn = document.createElement("button");
+         editBtn.textContent = "✏️";
+
+         editBtn.addEventListener("click", function(){
+
+        noteInput.value = note.title;
+        noteContent.value = note.content;
+        addBtn.textContent = "Update Note";
+
+        isEditing = true;
+        editingNoteDate = note.date;
+    });
+
+
+        newDiv.appendChild(newHTag);
+        newDiv.appendChild(newPTag);
+        newDiv.appendChild(deleteBtn);
+        newDiv.appendChild(editBtn);
+        notesList.appendChild(newDiv);
+
+
+      }
+
+    });
+
+  }
+
+
+
+
+//load notes from storage code
+function loadNotesFromLocalStorage(){
+  const storedNotesString = localStorage.getItem('notes');
+
+  if (storedNotesString){
+
+    try{
+      const parsedNotes = JSON.parse(storedNotesString);
+
+      notes = parsedNotes;
+
+      displayNotes();
+    } catch (error) {
+      console.error("Error parsing notes from localStorage:", error);
+
+      notes = [];
+
+    }
+  }
+}
+
+loadNotesFromLocalStorage(); 
+
+//display notes on the page
+function displayNotes(){
+  notesList.innerHTML = "";
+
+  for( let i = 0; i < notes.length; i++) {
+    console.log(`Note at index ${i}: $notes{[i]}`);
+
+    const note = notes[i]; // Get the current note
+    const newDiv = document.createElement("div");
+
+    const newHTag = document.createElement("h3");
+    newHTag.textContent = note.title;
+
+    const newPTag = document.createElement("p");
+    newPTag.textContent = note.content;
+
+
+    
+    //delete the note code
+   const deleteBtn = document.createElement("button");
+    deleteBtn.innerHTML = "X";
+    deleteBtn.style.cursor = "pointer";
+    // deleteBtn.innerHTML=  "<img src='image-copy.png'>";
+
+     deleteBtn.addEventListener("click", function(){
+     const confirmDelete = confirm("Are you sure?");
+
+     if (confirmDelete){
+      notes = notes.filter(n=> n.date !== note.date);
+      localStorage.setItem('notes', JSON.stringify(notes));
+      displayNotes();
+     }
+});
+
+
+    //edit the note code
+    const editBtn = document.createElement("button");
+    editBtn.textContent = "✏️";
+    editBtn.style.cursor = "pointer";
+
+    editBtn.addEventListener("click", function(){
+
+        noteInput.value = note.title;
+        noteContent.value = note.content;
+        addBtn.textContent = "Update Note";
+
+        isEditing = true;
+        editingNoteDate = note.date;
+    });
+
+
+
+
+    newDiv.appendChild(newHTag);
+    newDiv.appendChild(newPTag);
+    newDiv.appendChild(deleteBtn);
+    newDiv.appendChild(editBtn);
+    notesList.appendChild(newDiv);
+  }
+
+}
+
+
+//export file code
+exportBtn.addEventListener("click", function(){
+  const jsonString = JSON.stringify(notes);
+  const blob = new Blob([jsonString], {type: "application/json"});
+  const url = URL.createObjectURL(blob)
+  const linkElement = document.createElement("a");
+  linkElement.href = url;
+  linkElement.download = "notes.json";
+  document.body.appendChild(linkElement);
+  linkElement.click();
+  document.body.removeChild(linkElement);
+});
+
+
+//import file code
+importBtn.addEventListener("click", function(){
+  importFile.click();
+
+});
+
+importFile.addEventListener("change", function(){
+  const file = importFile.files[0];
+  if(!file) return;
+
+  const reader = new FileReader();
+
+  reader.onload = function (event){
+    try{
+
+      const importedNotes = JSON.parse(event.target.result);
+
+      if(!Array.isArray(importedNotes)){
+        alert("Invalid notes file");
+        return;
+      }
+
+      notes = importedNotes;
+      localStorage.setItem("notes", JSON.stringify(notes));
+
+      displayNotes();
+      alert("Notes imported successfully");
+
+    } catch (err) {
+      alert("Error importing file");
+    }
+  };
+  reader.readAsText(file);
+});
+
+</script>
+
+</body>
+</html>
