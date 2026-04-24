@@ -1,262 +1,349 @@
-    body{
-      /* background-color: #f5f5f5; */
-      background: radial-gradient(circle at top, #ffffff, #f3f3f8);
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      transition: background 0.3s;
-    }
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap');
 
-    
+:root {
+  --bg: #0a0a0a;
+  --surface: #111111;
+  --surface2: #1a1a1a;
+  --gold: #c9a84c;
+  --gold-dim: rgba(201, 168, 76, 0.15);
+  --text: #e8e0d0;
+  --text-dim: #888;
+  --border: rgba(201, 168, 76, 0.2);
+  --red: #c0392b;
+  --red-dim: rgba(192, 57, 43, 0.15);
+  --purple: #7c5cbf;
+  --purple-dim: rgba(124, 92, 191, 0.15);
+}
 
-    .noteInput{
-      display: block;
-      margin: 10px;
-      border-radius: 5px;
-      border: 0.5px solid gray;
-      padding: 10px;
-      transition: all 0.3s ease;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-    }
-    .noteInput:hover{
-      border-color: tomato;
-    }
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  min-height: 100vh;
+}
 
-    #noteInput:focus{
-      outline: none;
-      border-color: tomato;
-      box-shadow:  0 0 5px rgba(255, 99, 71, 0.3);
-    }
+/* HEADER */
+.header {
+  position: sticky;
+  top: 0;
+  background-color: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+}
 
+.header .logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  color: var(--gold);
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-decoration: none;
+}
 
+#nav-links a {
+  margin-left: 30px;
+  text-decoration: none;
+  color: var(--text-dim);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
 
-    #noteContent{
-      display: block;
-      border-radius: 5px;
-      margin: 10px;
-      border: 0.5px solid gray;
-      padding: 10px;
-      transition: all 0.3s ease;
-    }
+#nav-links a:hover {
+  color: var(--gold);
+  border-bottom: none;
+}
 
-    #noteContent:hover{
-      border-color:  #B56060;
-    }
+/* MAIN CONTAINER */
+.container {
+  max-width: 780px;
+  margin: 50px auto;
+  padding: 0 20px 60px;
+  background: none;
+  box-shadow: none;
+  border-radius: 0;
+}
 
-    #noteContent:focus{
-      outline: none;
-      border-color: tomato;
-      box-shadow:  0 0 5px rgba(255, 99, 71, 0.3);
-    }
+h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 48px;
+  font-weight: 300;
+  color: var(--text);
+  text-align: left;
+  margin-bottom: 8px;
+  letter-spacing: -1px;
+}
 
-    #notesList > div {
-      background-color: white;
-      padding: 15px;
-      margin-bottom: 15px;
-      border-radius: 8px;
-      /* box-shadow: 0 2px 5px rgba(0,0,0,0.1); */
-      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-      border-left: 4px solid #B56060;
-      transition: all 0.2s ease;
-    }
+h1 span {
+  color: var(--gold);
+}
 
-    #notesList > div:hover{
-      transform: scale(1.02);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    }
+.subtitle {
+  color: var(--text-dim);
+  font-size: 14px;
+  letter-spacing: 1px;
+  margin-bottom: 40px;
+}
 
-    #notesList h3{
-      margin-top: 0;
-      color: #333;
-    }
+/* INPUT AREA */
+.input-section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px;
+  margin-bottom: 32px;
+}
 
-    #notesList p{
-      color: #666;
-      line-height: 1.6;
-    }
+.noteInput, #noteInput {
+  display: block;
+  width: 100%;
+  background: var(--surface2);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 8px;
+  padding: 14px 16px;
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  margin-bottom: 12px;
+  transition: all 0.3s ease;
+  outline: none;
+}
 
-    #notesList button{
-      padding: 5px 10px;
-      margin-right: 5px;
-      border: none;
-      border-radius: 3px;
-      cursor: pointer;
-      font-size: 14px;
-    }
+.noteInput::placeholder, #noteInput::placeholder {
+  color: var(--text-dim);
+}
 
-    #notesList button:first-of-type{
-      background-color: #ffcdd2;
-      color: #c62828;
-    }
+.noteInput:focus, #noteInput:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px var(--gold-dim);
+}
 
-    #notesList button:first-of-type:hover{
-      background-color: #B56060;
-      color: white;
-    }
+#noteContent {
+  display: block;
+  width: 100%;
+  background: var(--surface2);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 8px;
+  padding: 14px 16px;
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  margin-bottom: 16px;
+  min-height: 100px;
+  resize: vertical;
+  transition: all 0.3s ease;
+  outline: none;
+}
 
-    #notesList button:last-of-type{
-      background-color: #e8e7f5;
-      color: #5e35b1;
-    }
+#noteContent::placeholder {
+  color: var(--text-dim);
+}
 
-    #notesList button:last-of-type:hover{
-      background-color: #9e9cea;
-      color: white;
-    }
+#noteContent:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px var(--gold-dim);
+}
 
+.addBtn {
+  background: var(--gold);
+  color: #0a0a0a;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 28px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+  margin: 0;
+}
 
-    .addBtn{
-      display: block;
-      font-size: 14px;
-      border-radius: 5px;
-      background-color: rgb(245, 193, 98);
-      cursor: pointer;
-      margin: 10px;
-      padding: 8px 16px;
-      transition: all 0.3s ease;
-    }
-    .addBtn:hover{
-      background-color: orange;
-      margin: 5px;
-    }
+.addBtn:hover {
+  background: #e0b95a;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(201, 168, 76, 0.3);
+  margin: 0;
+}
 
+/* SEARCH */
+#search {
+  display: block;
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 16px;
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  margin-bottom: 28px;
+  outline: none;
+  transition: all 0.3s ease;
+}
 
+#search::placeholder {
+  color: var(--text-dim);
+}
 
-    #search{
-      display: block;
-      border-radius: 5px;
-      margin: 10px;
-      border: 0.5px solid;
-      transition: all 0.3s ease;
-      padding: 10px;
-    }
+#search:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px var(--gold-dim);
+}
 
-    #search:hover{
-      border-color: blueviolet;
-    }
+/* DIVIDER */
+hr {
+  border: none;
+  height: 1px;
+  background: var(--border);
+  margin: 28px 0;
+}
 
-    #search:focus{
-      outline: none;
-      border-color: tomato;
-      box-shadow: 0 0 5px rgba(255, 99, 71, 0.3);
-    }
+/* NOTES LIST */
+#notesList > div {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin-bottom: 16px;
+  transition: all 0.3s ease;
+}
 
+#notesList > div:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+  border-color: var(--gold);
+}
 
+#notesList h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+}
 
-    #exportBtn{
-      margin: 5px;
-      background: #B5B4D9;
-      border-radius: 5px;
-      cursor: pointer;
-      padding: 8px 16px;
-      transition: all 0.3s ease;
-    }
+#notesList p {
+  color: var(--text-dim);
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
 
-    #exportBtn:hover{
-      background-color:#9e9cea;
-    }
+#notesList button {
+  padding: 7px 16px;
+  margin-right: 8px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  transition: all 0.2s ease;
+}
 
+#notesList button:first-of-type {
+  background: var(--red-dim);
+  color: #e74c3c;
+  border: 1px solid rgba(192,57,43,0.3);
+}
 
+#notesList button:first-of-type:hover {
+  background: var(--red);
+  color: white;
+}
 
-    #importBtn{
-      margin: 5px;
-      background-color: #9CD3D9;
-      border-radius: 5px;
-      font-size: 14px;
-      cursor: pointer;
-      padding: 8px 16px;
-      transition: all 0.3s ease;
-    }
+#notesList button:last-of-type {
+  background: var(--purple-dim);
+  color: #9b7de0;
+  border: 1px solid rgba(124,92,191,0.3);
+}
 
-    #importBtn:hover{
-      background-color: #79e1ec;
-    }
+#notesList button:last-of-type:hover {
+  background: var(--purple);
+  color: white;
+}
 
-    hr{
-      border: none;
-      height: 2px;
-      background-color: #B56060;
-      margin: 15px 0;
-      border-radius: 1px;
-    }
-    
-    .container{
-      position: relative;
-      max-width: 600px;
-      margin: 0 auto 30px;
-      background-color: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow:  0 2px 10px rgba(0,0,0,0.1);
-      position: relative;
-      margin-top: 60px;
-    }
+/* EXPORT/IMPORT */
+.export-import-section {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 32px;
+}
 
-    h1{
-      text-align: center;
-      color: #B56060;
-      margin-bottom: 25px;
-      font-size: 32px;
-    }
+#exportBtn {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-dim);
+  padding: 10px 24px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
 
-    .export-import-section{
-      text-align: center;
-      margin: 20px;
-    }
+#exportBtn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: var(--gold-dim);
+}
 
-    
-   .header{
-    display: flex;
-    top: 0;
-    position: sticky;
-    background-color: white;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    padding: 15px 30px;
-    z-index: 100;
-    justify-content: space-between;
-    }
+#importBtn {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-dim);
+  padding: 10px 24px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
 
-    #nav-links a{
-      margin-left: 20px;
-      text-decoration: none;
-      color: #333;
-      font-weight: bold;
-      color: #B56060;
-      transition: 0.3s ease;
-      padding-bottom: 5px;
-    }
+#importBtn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: var(--gold-dim);
+}
 
-    #nav-links a:hover{
-      border-bottom: 3px solid;
-      border-bottom-color: #666;
-    }
+/* FOOTER */
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 24px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-dim);
+  font-size: 13px;
+}
 
-    .footer{
-      border-top: 3px solid #B56060;
-      padding: 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: #666;
-      background-color: white;
-    }
+.footer a {
+  color: var(--text-dim);
+  text-decoration: none;
+  margin-left: 24px;
+  transition: color 0.3s ease;
+}
 
-    .footer a {
-      color: #666;
-      text-decoration: none;
-      margin-left: 15px;
-      transition: color 0.3s ease;
-    }
-
-    .footer a:hover{
-      color: #B56060;
-    }
-
-    .header div {
-      font-size: 18px;
-      font-weight: bold;
-      color: white;
-      background-color: #B56060;
-      padding: 6px 14px;
-      border-radius: 20px;
-    }
+.footer a:hover {
+  color: var(--gold);
+}
