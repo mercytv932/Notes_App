@@ -1,4 +1,4 @@
-# Notes App (Vanilla JavaScript)
+# Notes App (JavaScript)
 
 A clean and simple **Notes Application** built using **HTML, CSS, and Vanilla JavaScript**.  
 The app allows users to create, edit, delete, search, export, and import notes while storing all data locally in the browser using **localStorage**.
