@@ -1,54 +1,60 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <title>Notes App</title>
-</head>
-<body>
-  <header class="header">
-    <div> 📝 My Notes</div>
-    <nav id="nav-links">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="contact">Contact</a>
-    </nav>
-  </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Notes App</title>
+  </head>
+  <body>
+    <header class="header">
+      <div>📝 My Notes</div>
+      <nav id="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact">Contact</a>
+      </nav>
+    </header>
 
-<div class="container" role="main content">
-  <h1> My notes</h1>
-  <!-- <hr> -->
+    <div class="container" role="main content">
+      <h1>My notes</h1>
+      <!-- <hr> -->
 
- <input type="text" placeholder="title..." class="noteInput"> 
- <textarea id="noteContent" placeholder="write here..."></textarea>
- <button class="addBtn">Add Note</button>
- <input type="search" placeholder="Find my notes..." id="search">
+      <input type="text" placeholder="title..." class="noteInput" />
+      <textarea id="noteContent" placeholder="write here..."></textarea>
+      <button class="addBtn">Add Note</button>
+      <input type="search" placeholder="Find my notes..." id="search" />
 
-<!-- <br><br> -->
-<hr>
-  <div id="notesList" aria-label="notes"></div>
-<br><br>
+      <!-- <br><br> -->
+      <hr />
+      <div id="notesList" aria-label="notes" aria-live="polite"></div>
+      <br /><br />
 
- <div class="export-import-section">
-  <button id="exportBtn" aria-label="click to download the notes">Download</button>
-  <button id="importBtn" aria-label="click to upload notes from files">Upload</button>
-  <input type="file" id="importFile" accept=".json" style="display: none;">
+      <div class="export-import-section">
+        <button id="exportBtn" aria-label="click to download the notes">
+          Download
+        </button>
+        <button id="importBtn" aria-label="click to upload notes from files">
+          Upload
+        </button>
+        <input
+          type="file"
+          id="importFile"
+          accept=".json"
+          style="display: none"
+        />
+      </div>
+    </div>
 
- </div>
+    <footer class="footer">
+      <p>&copy; 2026 My Notes. All rights reserved.</p>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="/privacy-policy">Privacy Policy</a>
+      </nav>
+    </footer>
 
-</div>
-
-<footer class="footer">
-  <p>&copy; 2026 My Notes. All rights reserved.</p>
-  <nav>
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="/privacy-policy">Privacy Policy</a>
-  </nav>
-</footer>
-
-<script src="script.js"></script>
-
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
