@@ -16,16 +16,18 @@
     </nav>
   </header>
 
-<div class="container">
+<div class="container" role="main content">
   <h1> My notes</h1>
+  <!-- <hr> -->
 
  <input type="text" placeholder="title..." class="noteInput"> 
  <textarea id="noteContent" placeholder="write here..."></textarea>
  <button class="addBtn">Add Note</button>
  <input type="search" placeholder="Find my notes..." id="search">
 
+<!-- <br><br> -->
 <hr>
-  <div id="notesList"></div>
+  <div id="notesList" aria-label="notes"></div>
 <br><br>
 
  <div class="export-import-section">
@@ -34,6 +36,7 @@
   <input type="file" id="importFile" accept=".json" style="display: none;">
 
  </div>
+
 </div>
 
 <footer class="footer">
@@ -44,6 +47,8 @@
   <a href="/privacy-policy">Privacy Policy</a>
   </nav>
 </footer>
+
 <script src="script.js"></script>
+
 </body>
 </html>
